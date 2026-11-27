@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vinicius Dias — Designer e diagramador</title>
+  <meta name="description" content="Vinicius Dias, designer e diagramador em São Paulo. Editorial, identidade visual e projetos voltados à acessibilidade e à cultura." />
+  <meta property="og:title" content="Vinicius Dias — Designer e diagramador" />
+  <meta property="og:description" content="Editorial, identidade visual, acessibilidade e cultura. São Paulo, Brasil." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/mesp-capa.webp" />
+  <meta name="theme-color" content="#F7F2E8" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F7F2E8'/%3E%3Crect x='4' y='4' width='26' height='26' fill='%23D83A2E'/%3E%3Ccircle cx='47' cy='17' r='13' fill='%232F6DB5'/%3E%3Cpath d='M4 60 L30 60 L30 34 Z' fill='%23F2C230'/%3E%3Crect x='34' y='34' width='26' height='26' fill='%23111'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,100,500&display=swap" rel="stylesheet">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root {
+      --paper: #F7F2E8;
+      --ink: #111111;
+      --red: #D83A2E;
+      --blue: #2F6DB5;
+      --yellow: #F2C230;
+      --muted: #5E5A52;
+      --line: 6px;                 /* espessura das linhas da grade */
+      --font: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+      --pad: clamp(16px, 4vw, 56px);
+      --max: 1360px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+    ::selection { background: var(--yellow); color: var(--ink); }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+    /* tipografia */
+    .display { font-weight: 850; font-stretch: 118%; text-transform: uppercase; letter-spacing: -.02em; line-height: .9; }
+    .caps { font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+    .muted { color: var(--muted); }
+    .ul { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .25em; }
+
+    /* botões brutalistas */
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 14px 22px; background: var(--ink); color: var(--paper); text-decoration: none;
+      font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; border: 3px solid var(--ink);
+      transition: transform .12s, box-shadow .12s, background-color .15s; }
+    .btn:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--red); }
+    .btn:active { transform: none; box-shadow: none; }
+    .btn.ghost { background: transparent; color: var(--ink); }
+    .btn.ghost:hover { box-shadow: 6px 6px 0 var(--blue); }
+
+    /* ---------- cabeçalho ---------- */
+    .site-header { position: sticky; top: 0; z-index: 30; background: var(--paper); border-bottom: 3px solid var(--ink); }
+    .site-header .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .shapes { display: flex; align-items: center; gap: 6px; }
+    .shapes i { display: block; width: 16px; height: 16px; }
+    .shapes .sq { background: var(--red); }
+    .shapes .ci { background: var(--blue); border-radius: 50%; }
+    .shapes .tr { background: var(--yellow); clip-path: polygon(0 0, 100% 0, 0 100%); }
+    .brand:hover .shapes i { animation: hop .5s cubic-bezier(.3,1.6,.5,1); }
+    .brand:hover .shapes .ci { animation-delay: .06s; } .brand:hover .shapes .tr { animation-delay: .12s; }
+    @keyframes hop { 40% { transform: translateY(-6px) rotate(90deg); } }
+    .brand b { font-weight: 850; font-stretch: 115%; font-size: 17px; letter-spacing: .02em; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: clamp(14px, 3vw, 40px); }
+    .nav a { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+    .nav a:hover { border-bottom-color: var(--red); }
+    .lang { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; letter-spacing: .12em; }
+    .lang button { padding: 4px 7px; border: 2px solid transparent; }
+    .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+    @media (max-width: 700px) { .nav .hide-sm { display: none; } .brand b { font-size: 15px; } }
+
+    /* ---------- abertura ---------- */
+    .hero { display: grid; grid-template-columns: 6fr 5fr; gap: clamp(28px, 5vw, 72px); align-items: stretch; padding-top: clamp(40px, 7vh, 80px); padding-bottom: clamp(48px, 8vh, 88px); }
+    .hero h1 { font-size: clamp(50px, 6.4vw, 100px); font-stretch: 108%; }
+    .hero h1 .sl { font-weight: 400; font-stretch: 100%; margin-left: .08em; }
+    .hero h1 .r { color: var(--red); } .hero h1 .b { color: var(--blue); } .hero h1 .y { color: var(--yellow); }
+    .hero-left { display: flex; flex-direction: column; justify-content: space-between; gap: 36px; }
+    .hero-left p { font-size: clamp(18px, 1.5vw, 21px); line-height: 1.45; max-width: 30ch; padding-left: 18px; border-left: 3px solid var(--ink); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+    /* composição neoplástica */
+    .comp { --c: 1.55fr 1fr .62fr; --r: 1.15fr .85fr .7fr; display: grid; grid-template-columns: var(--c); grid-template-rows: var(--r);
+      gap: var(--line); background: var(--ink); border: var(--line) solid var(--ink); aspect-ratio: 1 / .92; min-height: 380px;
+      transition: grid-template-columns 1.2s cubic-bezier(.7,0,.2,1), grid-template-rows 1.2s cubic-bezier(.7,0,.2,1); }
+    .comp > * { position: relative; overflow: hidden; }
+    .c-img { grid-column: 1 / 3; grid-row: 1 / 3; background: var(--paper); cursor: pointer; }
+    .c-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .9s ease, transform 1.4s cubic-bezier(.2,.7,.2,1); }
+    .c-img img.out { opacity: 0; transform: scale(1.06); }
+    .c-img:hover img:not(.out) { transform: scale(1.03); }
+    .c-tag { position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--paper); border-top: var(--line) solid var(--ink); border-right: var(--line) solid var(--ink);
+      padding: 10px 14px 9px; display: flex; gap: 12px; align-items: baseline; transition: background-color .3s; }
+    .c-tag b { font-weight: 850; font-stretch: 115%; text-transform: uppercase; font-size: clamp(14px, 1.3vw, 18px); }
+    .c-img:hover .c-tag { background: var(--yellow); }
+    .c-red { grid-column: 3; grid-row: 1; background: var(--red); }
+    .c-yel { grid-column: 3; grid-row: 2; background: var(--yellow); }
+    .c-yel::after { content: ''; position: absolute; width: 140%; aspect-ratio: 1; border-radius: 50%; background: var(--ink); left: -70%; top: -70%;
+      transition: transform 1.2s cubic-bezier(.7,0,.2,1); transform: rotate(var(--rot, 0deg)); transform-origin: 50% 50%; }
+    .c-blu { grid-column: 1; grid-row: 3; background: var(--blue); }
+    .c-pap { grid-column: 2; grid-row: 3; background: var(--paper); }
+    .c-pap::after { content: ''; position: absolute; width: 74%; aspect-ratio: 1; border: 2px solid var(--ink); border-radius: 50%; right: -18%; top: 50%; transform: translateY(-50%); }
+    .c-blk { grid-column: 3; grid-row: 3; background: var(--ink); }
+    .comp-dots { display: flex; gap: 8px; margin-top: 14px; justify-content: flex-end; }
+    .comp-dots button { width: 34px; height: 6px; background: #D9D2C3; }
+    .comp-dots button[aria-current="true"] { background: var(--ink); }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .comp { aspect-ratio: 1 / 1; min-height: 0; } }
+
+    /* ---------- letreiro ---------- */
+    .ticker { background: var(--ink); color: var(--paper); overflow: hidden; padding: 16px 0; }
+    .ticker-track { display: flex; width: max-content; animation: ticker 40s linear infinite; }
+    .ticker-group { display: flex; align-items: center; gap: 36px; padding-right: 36px; white-space: nowrap; }
+    .ticker-group span { font-weight: 800; font-stretch: 118%; text-transform: uppercase; font-size: clamp(18px, 2vw, 26px); letter-spacing: .01em; }
+    .ticker-group i { display: block; width: 14px; height: 14px; flex: none; }
+    .ticker-group i.sq { background: var(--red); } .ticker-group i.ci { background: var(--blue); border-radius: 50%; } .ticker-group i.tr { background: var(--yellow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* ---------- seções ---------- */
+    .section { padding-top: clamp(64px, 11vh, 120px); padding-bottom: clamp(64px, 11vh, 120px); }
+    .sec-head { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 20px; margin-bottom: clamp(28px, 5vh, 48px); }
+    .sec-head .n { font-weight: 850; font-stretch: 118%; font-size: clamp(16px, 1.4vw, 20px); padding: 6px 10px; color: var(--paper); }
+    .sec-head h2 { font-size: clamp(40px, 6vw, 88px); }
+    .sec-head .rule { grid-column: 1 / -1; height: 3px; background: var(--ink); }
+    .sec-head h2 { min-width: 0; }
+    @media (max-width: 600px) { .sec-head { grid-template-columns: auto 1fr; row-gap: 10px; } .sec-head h2 { font-size: 38px; } .sec-head > .caps { grid-column: 1 / -1; order: 3; } .sec-head .rule { order: 4; } }
+
+    /* ---------- trabalhos: grade Mondrian ---------- */
+    .works { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: clamp(110px, 11.2vw, 168px); gap: var(--line); background: var(--ink); border: var(--line) solid var(--ink); }
+    .work { position: relative; overflow: hidden; background: #E9E2D3; text-align: left; display: block; }
+    .work img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+    .work:hover img { transform: scale(1.04); }
+    .work .tag { position: absolute; left: 0; bottom: 0; z-index: 2; background: var(--paper); border-top: var(--line) solid var(--ink); border-right: var(--line) solid var(--ink);
+      padding: 12px 16px 11px; display: grid; grid-template-columns: auto auto; column-gap: 14px; align-items: baseline; transition: background-color .25s, color .25s; max-width: calc(100% - 24px); }
+    .work .tag .num { font-size: 12px; font-weight: 700; letter-spacing: .1em; }
+    .work .tag b { font-weight: 850; font-stretch: 118%; text-transform: uppercase; font-size: clamp(17px, 1.6vw, 24px); line-height: 1; }
+    .work .tag small { grid-column: 2; font-size: 13px; margin-top: 4px; }
+    .work:hover .tag, .work:focus-visible .tag { background: var(--hc); color: var(--hf, var(--ink)); }
+    .deco { background: var(--paper); position: relative; overflow: hidden; }
+    .deco.red { background: var(--red); } .deco.ink { background: var(--ink); } .deco.blue { background: var(--blue); } .deco.yellow { background: var(--yellow); }
+    .deco.circle::after { content: ''; position: absolute; inset: 18%; border-radius: 50%; background: var(--ink); transition: transform .6s cubic-bezier(.3,1.5,.5,1); }
+    .works:hover .deco.circle::after { transform: scale(.82); }
+    @media (max-width: 760px) {
+      .works { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .work { grid-column: 1 !important; grid-row: auto !important; aspect-ratio: 4 / 3.4; }
+      .deco { grid-column: 1 !important; grid-row: auto !important; height: 18px; }
+      .deco.circle { display: none; }
+    }
+
+    /* ---------- sobre ---------- */
+    .about { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(24px, 3vw, 40px); }
+    .portrait { grid-column: 1 / span 5; position: relative; aspect-ratio: 1 / 1.08; }
+    .portrait .blk { position: absolute; }
+    .portrait .y { left: 0; top: 0; width: 72%; height: 72%; background: var(--yellow); border: var(--line) solid var(--ink); }
+    .portrait .r { right: 4%; bottom: 0; width: 26%; height: 26%; background: var(--red); border: var(--line) solid var(--ink); }
+    .portrait .photo { position: absolute; left: 14%; top: 14%; width: 72%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: var(--line) solid var(--ink); background: #ddd; }
+    .portrait .photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.1); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    .portrait:hover .photo img { transform: scale(1.05); }
+    .portrait .line { position: absolute; left: 0; right: 0; top: 86%; height: 3px; background: var(--ink); }
+    .about-text { grid-column: 7 / span 6; }
+    .about-text .lead { font-weight: 700; font-stretch: 105%; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.18; letter-spacing: -.01em; }
+    .about-text p { font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; max-width: 56ch; }
+    .about-text p + p { margin-top: 1em; }
+    .table { margin-top: clamp(36px, 6vh, 56px); border-top: 3px solid var(--ink); }
+    .table h3 { padding: 12px 0; border-bottom: 1px solid var(--ink); }
+    .trow { display: grid; grid-template-columns: 70px 1fr auto; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--ink); align-items: baseline; }
+    .trow .y { font-weight: 800; font-stretch: 115%; }
+    .trow .now { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: var(--yellow); padding: 3px 7px; border: 2px solid var(--ink); }
+    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--line); background: var(--ink); border: var(--line) solid var(--ink); margin-top: clamp(48px, 8vh, 80px); }
+    .skill { background: var(--paper); padding: 22px 20px 26px; position: relative; }
+    .skill::before { content: ''; display: block; width: 28px; height: 28px; margin-bottom: 18px; background: var(--c); }
+    .skill.s1::before { border-radius: 0; } .skill.s2::before { border-radius: 50%; } .skill.s3::before { clip-path: polygon(0 0, 100% 0, 0 100%); }
+    .skill h4 { font-weight: 850; font-stretch: 118%; text-transform: uppercase; font-size: 19px; margin-bottom: 8px; }
+    .skill p { font-size: 15px; color: var(--muted); }
+    @media (max-width: 900px) {
+      .portrait { grid-column: 1 / -1; max-width: 440px; }
+      .about-text { grid-column: 1 / -1; }
+      .skills { grid-template-columns: 1fr; }
+    }
+
+    /* ---------- contato ---------- */
+    .contact { background: var(--blue); color: var(--paper); border-top: var(--line) solid var(--ink); border-bottom: var(--line) solid var(--ink); position: relative; overflow: hidden; }
+    .contact .wrap { position: relative; z-index: 1; padding-top: clamp(64px, 12vh, 128px); padding-bottom: clamp(56px, 10vh, 104px); }
+    .contact .q { font-size: clamp(20px, 1.8vw, 26px); font-weight: 600; max-width: 30ch; }
+    .contact .mail { display: inline-block; margin-top: 20px; font-weight: 850; font-stretch: 112%; font-size: clamp(30px, 6vw, 92px); letter-spacing: -.035em; line-height: 1; text-decoration: none; word-break: break-all; }
+    .contact .mail:hover { color: var(--yellow); }
+    .contact .row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+    .contact .btn { background: var(--paper); color: var(--ink); border-color: var(--ink); }
+    .contact .btn:hover { box-shadow: 6px 6px 0 var(--ink); }
+    .contact .sun { position: absolute; z-index: 0; right: -8vw; top: -12vw; width: 38vw; aspect-ratio: 1; border-radius: 50%; background: var(--red); border: var(--line) solid var(--ink); }
+    .contact .bar { position: absolute; z-index: 0; right: 4vw; bottom: 0; width: 7vw; height: 46%; background: var(--yellow); border: var(--line) solid var(--ink); border-bottom: 0; }
+    @media (max-width: 700px) { .contact .sun { width: 52vw; top: -20vw; } .contact .bar { display: none; } }
+    .colophon { background: var(--ink); color: var(--paper); }
+    .colophon .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 18px; padding-bottom: 18px; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+    .colophon a { text-decoration: none; } .colophon a:hover { color: var(--yellow); }
+
+    /* ---------- página do projeto ---------- */
+    .case { position: fixed; inset: 0; z-index: 50; background: var(--paper); overflow-y: auto; display: none; }
+    .case.open { display: block; animation: caseIn .5s cubic-bezier(.7,0,.2,1); }
+    @keyframes caseIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+    .case-bar { position: sticky; top: 0; z-index: 3; background: var(--paper); border-bottom: 3px solid var(--ink); }
+    .case-bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .case-bar button { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 8px 0; border-bottom: 2px solid transparent; }
+    .case-bar button:hover { border-bottom-color: var(--red); }
+    .case-head { padding-top: clamp(40px, 8vh, 88px); }
+    .case-head h1 { font-size: clamp(52px, 10vw, 160px); margin-top: 14px; overflow-wrap: anywhere; }
+    .case-head .stripe { height: 18px; width: clamp(120px, 20vw, 260px); background: var(--hc); border: 3px solid var(--ink); margin-top: 24px; }
+    .case-tagline { font-size: clamp(20px, 1.9vw, 28px); font-weight: 700; margin-top: 22px; }
+    .case-summary { font-size: clamp(18px, 1.5vw, 21px); line-height: 1.5; max-width: 52ch; margin-top: 12px; }
+    .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; background: var(--ink); border: 3px solid var(--ink); margin-top: clamp(32px, 6vh, 56px); }
+    .meta > div { background: var(--paper); padding: 14px 16px 16px; }
+    .meta dt { margin-bottom: 8px; }
+    .meta dd { font-size: 15px; font-weight: 500; }
+    .meta ul { list-style: none; }
+    .meta .team { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+    .meta .team dt { margin: 0 6px 0 0; }
+    .meta .team dd { font-size: 15px; }
+    .meta .team dd + dd::before { content: '/'; margin-right: 14px; color: var(--muted); }
+    @media (max-width: 760px) { .meta { grid-template-columns: 1fr 1fr; } }
+    .case-hero { margin-top: clamp(32px, 6vh, 56px); border: var(--line) solid var(--ink); background: #E9E2D3; }
+    .case-hero img { width: 100%; height: auto; }
+    .case-text { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); padding: clamp(48px, 9vh, 96px) 0; }
+    .case-text h2 { display: inline-block; margin-bottom: 14px; padding: 5px 9px; background: var(--ink); color: var(--paper); }
+    .case-text p { font-size: 17px; line-height: 1.65; }
+    @media (max-width: 760px) { .case-text { grid-template-columns: 1fr; } }
+    .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: var(--line); background: var(--ink); border: var(--line) solid var(--ink); }
+    .gallery figure { background: #E9E2D3; }
+    .gallery .span2, .gallery .strip { grid-column: 1 / -1; }
+    .gallery img { width: 100%; height: auto; }
+    @media (max-width: 640px) { .gallery { grid-template-columns: 1fr; } }
+    .collection { columns: 2; column-gap: clamp(16px, 2.4vw, 32px); }
+    .collection figure { break-inside: avoid; margin-bottom: clamp(24px, 4vh, 40px); }
+    .collection a { display: block; overflow: hidden; border: var(--line) solid var(--ink); background: #E9E2D3; }
+    .collection img { width: 100%; height: auto; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    .collection a:hover img { transform: scale(1.03); }
+    .collection figcaption { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; padding-top: 10px; }
+    .collection figcaption .n { font-size: 12px; font-weight: 700; letter-spacing: .1em; padding-top: 3px; }
+    .collection figcaption .t { font-weight: 850; font-stretch: 112%; text-transform: uppercase; font-size: 16px; }
+    .collection figcaption .d { grid-column: 2; font-size: 14px; color: var(--muted); }
+    @media (max-width: 640px) { .collection { columns: 1; } }
+    .case-next { display: grid; grid-template-columns: 1fr auto; align-items: end; width: 100%; text-align: left; margin-top: clamp(64px, 12vh, 120px);
+      background: var(--hc); color: var(--hf, var(--ink)); border-top: var(--line) solid var(--ink); padding: clamp(28px, 5vh, 48px) var(--pad) clamp(40px, 8vh, 72px); }
+    .case-next .display { font-size: clamp(36px, 7vw, 110px); margin-top: 10px; display: block; }
+    .case-next .arrow { font-size: clamp(36px, 6vw, 90px); font-weight: 300; transition: transform .3s; }
+    .case-next:hover .arrow { transform: translateX(12px); }
+
+    /* ---------- movimento ---------- */
+    .js .reveal { clip-path: inset(0 100% 0 0); transition: clip-path .9s cubic-bezier(.7,0,.2,1); transition-delay: var(--d, 0ms); }
+    .js .reveal.in { clip-path: inset(0 0 0 0); }
+    .js .rise { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+    .js .rise.in { opacity: 1; transform: none; }
+    .js .comp > * { animation: blockIn .7s cubic-bezier(.7,0,.2,1) both; animation-delay: var(--d, 0ms); }
+    @keyframes blockIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { clip-path: none; transition: none; }
+      .js .rise { transform: none; }
+      .js .comp > * { animation: none; }
+      .comp { transition: none; }
+      .ticker-track { animation-duration: 90s; }
+      .case.open { animation: none; }
+    }
+
+    .toast { position: fixed; left: 50%; bottom: 24px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--yellow); color: var(--ink);
+      border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 10px 16px; transition: opacity .25s, transform .25s; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="#" class="brand" onclick="window.scrollTo({top:0});return false;" aria-label="Vinicius Dias, início">
+        <span class="shapes" aria-hidden="true"><i class="sq"></i><i class="ci"></i><i class="tr"></i></span>
+        <b>Vinicius Dias</b>
+      </a>
+      <nav class="nav" aria-label="Principal">
+        <a class="hide-sm" href="#trabalhos" data-i18n="nav_work">Trabalhos</a>
+        <a class="hide-sm" href="#sobre" data-i18n="nav_about">Sobre</a>
+        <a href="#contato" data-i18n="nav_contact">Contato</a>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button id="btn-pt" aria-pressed="true" onclick="setLanguage('pt')">PT</button>
+          <button id="btn-en" aria-pressed="false" onclick="setLanguage('en')">EN</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-left">
+        <h1 class="display" data-i18n-html="hero_title">Design<span class="sl r">/</span><br>para<span class="sl b">/</span><br>pessoas<span class="y">.</span></h1>
+        <p class="rise" style="--d:300ms" data-i18n="hero_text">Sou Vinicius Dias, designer e diagramador em São Paulo. Crio soluções visuais com interesse especial em acessibilidade e cultura.</p>
+        <div class="hero-actions rise" style="--d:420ms">
+          <a class="btn" href="#trabalhos"><span data-i18n="cta_work">Ver trabalhos</span> <span aria-hidden="true">↓</span></a>
+          <a class="btn ghost" href="#contato" data-i18n="cta_contact">Contato</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="comp" id="comp">
+          <button class="c-img" id="comp-img" style="--d:0ms" onclick="openCase(HERO[heroIndex])">
+            <img id="comp-a" alt="" /><img id="comp-b" class="out" alt="" />
+            <span class="c-tag"><span class="caps" id="comp-num">01</span><b id="comp-name">MESP</b></span>
+          </button>
+          <div class="c-red" style="--d:120ms"></div>
+          <div class="c-yel" style="--d:200ms"></div>
+          <div class="c-blu" style="--d:280ms"></div>
+          <div class="c-pap" style="--d:340ms"></div>
+          <div class="c-blk" style="--d:400ms"></div>
+        </div>
+        <div class="comp-dots" id="comp-dots" aria-label="Projetos em destaque"></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+    <section class="section wrap" id="trabalhos">
+      <div class="sec-head">
+        <span class="n" style="background: var(--red)">01</span>
+        <h2 class="display reveal" data-i18n="work_title">Trabalhos</h2>
+        <span class="caps" id="work-count"></span>
+        <span class="rule"></span>
+      </div>
+      <div class="works" id="works"></div>
+    </section>
+
+    <section class="section wrap" id="sobre">
+      <div class="sec-head">
+        <span class="n" style="background: var(--blue)">02</span>
+        <h2 class="display reveal" data-i18n="about_title">Sobre</h2>
+        <span></span>
+        <span class="rule"></span>
+      </div>
+      <div class="about">
+        <div class="portrait reveal" aria-hidden="false">
+          <span class="blk y"></span><span class="blk r"></span><span class="line"></span>
+          <div class="photo"><img src="img/retrato.jpg" alt="Retrato de Vinicius Dias" loading="lazy" onerror="this.style.visibility='hidden'" /></div>
+        </div>
+        <div class="about-text">
+          <p class="lead rise" data-i18n="bio_lead">Me interesso por criar soluções visuais para pessoas, principalmente quando o assunto é acessibilidade e cultura.</p>
+          <p class="rise" data-i18n="bio_1" style="margin-top:1.2em">Gosto do editorial porque ele apresenta as coisas de um jeito único: é físico, num mundo cada vez mais digital. Mas não descarto o digital. Trabalho com ele também, principalmente em branding.</p>
+          <p class="rise" data-i18n="bio_2">Sou formado em Design pela Universidade São Judas Tadeu e hoje diagramo livros na Editora Online.</p>
+          <div class="table rise">
+            <h3 class="caps" data-i18n="exp_title">Experiência</h3>
+            <div id="exp-list"></div>
+          </div>
+        </div>
+      </div>
+      <div class="skills">
+        <div class="skill s1 rise" style="--c: var(--red)"><h4 data-i18n="skill_1">Editorial</h4><p data-i18n="skill_1_d">Livros, revistas, catálogos e relatórios, do projeto gráfico ao arquivo de impressão.</p></div>
+        <div class="skill s2 rise" style="--c: var(--blue); --d:100ms"><h4 data-i18n="skill_2">Identidade visual</h4><p data-i18n="skill_2_d">Marcas, sistemas visuais e manuais de aplicação.</p></div>
+        <div class="skill s3 rise" style="--c: var(--yellow); --d:200ms"><h4 data-i18n="skill_3">Social media</h4><p data-i18n="skill_3_d">Peças digitais que mantêm a marca coerente fora do papel.</p></div>
+      </div>
+    </section>
+
+    <footer id="contato">
+      <div class="contact">
+        <span class="sun" aria-hidden="true"></span><span class="bar" aria-hidden="true"></span>
+        <div class="wrap">
+          <span class="caps">03 — <span data-i18n="nav_contact">Contato</span></span>
+          <p class="q rise" style="margin-top:18px" data-i18n="contact_q">Tem um projeto editorial, uma marca ou uma ideia? Escreve pra mim.</p>
+          <a class="mail rise" href="mailto:dias00448@gmail.com">dias00448@gmail.com</a>
+          <div class="row rise">
+            <button class="btn" onclick="copyEmail()" data-i18n="copy">Copiar e-mail</button>
+            <a class="btn" href="https://www.linkedin.com/in/vinicius-dias-mota/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a class="btn" href="https://www.behance.net/Vini_Dias" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          </div>
+        </div>
+      </div>
+      <div class="colophon">
+        <div class="wrap">
+          <span>© <span id="year"></span> Vinicius Dias · São Paulo</span>
+          <a href="#" onclick="window.scrollTo({top:0});return false;" data-i18n="back_top">Voltar ao topo ↑</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <div class="case" id="case" role="dialog" aria-modal="true" aria-labelledby="case-title" aria-hidden="true">
+    <div class="case-bar">
+      <div class="wrap">
+        <button id="case-close" onclick="closeCase()" data-i18n="back">← Voltar</button>
+        <span class="caps" id="case-count"></span>
+      </div>
+    </div>
+    <article id="case-body"></article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    let currentLang = 'pt';
+    let activeId = null;
+    let lastFocus = null;
+
+    function imgFallback(el) {
+      const list = (el.dataset.fallbacks || '').split('|').filter(Boolean);
+      if (list.length) { el.src = list.shift(); el.dataset.fallbacks = list.join('|'); return; }
+      const box = el.dataset.hide && el.closest(el.dataset.hide);
+      if (box) box.remove(); else el.style.visibility = 'hidden';
+    }
+    const imgAttrs = (sources) => {
+      const list = (sources || []).filter(Boolean);
+      return `src="${list[0] || ''}" data-fallbacks="${list.slice(1).join('|')}" onerror="imgFallback(this)"`;
+    };
+    const pad = (n) => String(n).padStart(2, '0');
+    const esc = (s) => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const SMALL = ['de', 'da', 'do', 'das', 'dos', 'e', 'para', 'a', 'o', 'and', 'of', 'the'];
+    const titleCase = (s) => String(s).toLowerCase().split(' ').map((w, i) =>
+      (i > 0 && SMALL.includes(w)) ? w : w.replace(/^\p{L}/u, c => c.toUpperCase())).join(' ');
+
+    // =========================================================
+    // TEXTOS
+    // =========================================================
+    const i18n = {
+      pt: {
+        nav_work: 'Trabalhos', nav_about: 'Sobre', nav_contact: 'Contato',
+        hero_title: 'Design<span class="sl r">/</span><br>para<span class="sl b">/</span><br>pessoas<span class="y">.</span>',
+        hero_text: 'Sou Vinicius Dias, designer e diagramador em São Paulo. Crio soluções visuais com interesse especial em acessibilidade e cultura.',
+        cta_work: 'Ver trabalhos', cta_contact: 'Contato',
+        ticker: ['Editorial', 'Identidade visual', 'Acessibilidade', 'Cultura', 'Diagramação', 'Branding'],
+        work_title: 'Trabalhos', projects: 'projetos',
+        about_title: 'Sobre',
+        bio_lead: 'Me interesso por criar soluções visuais para pessoas, principalmente quando o assunto é acessibilidade e cultura.',
+        bio_1: 'Gosto do editorial porque ele apresenta as coisas de um jeito único: é físico, num mundo cada vez mais digital. Mas não descarto o digital. Trabalho com ele também, principalmente em branding.',
+        bio_2: 'Sou formado em Design pela Universidade São Judas Tadeu e hoje diagramo livros na Editora Online.',
+        exp_title: 'Experiência', now: 'Atual',
+        skill_1: 'Editorial', skill_1_d: 'Livros, revistas, catálogos e relatórios, do projeto gráfico ao arquivo de impressão.',
+        skill_2: 'Identidade visual', skill_2_d: 'Marcas, sistemas visuais e manuais de aplicação.',
+        skill_3: 'Social media', skill_3_d: 'Peças digitais que mantêm a marca coerente fora do papel.',
+        contact_q: 'Tem um projeto editorial, uma marca ou uma ideia? Escreve pra mim.',
+        copy: 'Copiar e-mail', copied: 'E-mail copiado', copy_fail: 'Não deu pra copiar',
+        back_top: 'Voltar ao topo ↑', back: '← Voltar',
+        m_year: 'Ano', m_client: 'Contexto', m_area: 'Área', m_deliv: 'Entregas', m_team: 'Em grupo com', group: 'em grupo',
+        challenge: 'Contexto', solution: 'Solução', next: 'Próximo projeto'
+      },
+      en: {
+        nav_work: 'Work', nav_about: 'About', nav_contact: 'Contact',
+        hero_title: 'Design<span class="sl r">/</span><br>for<span class="sl b">/</span><br>people<span class="y">.</span>',
+        hero_text: 'I’m Vinicius Dias, a designer and layout artist in São Paulo. I create visual solutions with a particular interest in accessibility and culture.',
+        cta_work: 'See work', cta_contact: 'Contact',
+        ticker: ['Editorial', 'Visual identity', 'Accessibility', 'Culture', 'Layout', 'Branding'],
+        work_title: 'Work', projects: 'projects',
+        about_title: 'About',
+        bio_lead: 'I’m interested in creating visual solutions for people, especially when it comes to accessibility and culture.',
+        bio_1: 'I love editorial design because it presents things in a unique way: it’s physical, in an increasingly digital world. But I don’t dismiss digital. I work with it too, mostly in branding.',
+        bio_2: 'I hold a degree in Design from Universidade São Judas Tadeu and currently lay out books at Editora Online.',
+        exp_title: 'Experience', now: 'Current',
+        skill_1: 'Editorial', skill_1_d: 'Books, magazines, catalogs and reports, from layout system to print-ready files.',
+        skill_2: 'Visual identity', skill_2_d: 'Brands, visual systems and guidelines.',
+        skill_3: 'Social media', skill_3_d: 'Digital pieces that keep a brand consistent off the page.',
+        contact_q: 'Have an editorial project, a brand or an idea? Write to me.',
+        copy: 'Copy email', copied: 'Email copied', copy_fail: 'Couldn’t copy',
+        back_top: 'Back to top ↑', back: '← Back',
+        m_year: 'Year', m_client: 'Context', m_area: 'Field', m_deliv: 'Deliverables', m_team: 'Team project with', group: 'team project',
+        challenge: 'Context', solution: 'Solution', next: 'Next project'
+      }
+    };
+    const t = (k) => i18n[currentLang][k];
+
+    // Nome, área, cor e posição de cada projeto
+    const DISPLAY = {
+      'proj-01':    { slug: 'mesp',          color: 'var(--blue)',   fg: 'var(--paper)', pt: ['MESP', 'Identidade visual'],        en: ['MESP', 'Visual identity'] },
+      'proj-02':    { slug: 'aura-brasil',   color: 'var(--yellow)',    fg: 'var(--ink)', pt: ['Aura Brasil', 'Revista'],           en: ['Aura Brasil', 'Magazine'] },
+      'proj-town':  { slug: 'the-town',      color: 'var(--red)',    fg: 'var(--paper)', pt: ['The Town', 'Rebranding de festival'],  en: ['The Town', 'Festival rebranding'] },
+      'proj-03':    { slug: 'a-metamorfose', color: 'var(--yellow)', fg: 'var(--ink)',   pt: ['A Metamorfose', 'Design de livro'], en: ['The Metamorphosis', 'Book design'] },
+      'proj-ecoar': { slug: 'ecoar',         color: 'var(--blue)',   fg: 'var(--paper)', pt: ['Ecoar', 'Interface e identidade'],  en: ['Ecoar', 'Interface and identity'] },
+      'proj-04':    { slug: 'colecao',       color: 'var(--red)',    fg: 'var(--paper)', pt: ['Coleção', 'Projetos diversos'],     en: ['Collection', 'Assorted work'] }
+    };
+    const ORDER = ['proj-01', 'proj-town', 'proj-02', 'proj-03', 'proj-ecoar', 'proj-04'];
+    const HERO = ['proj-01', 'proj-town', 'proj-02', 'proj-03', 'proj-ecoar'];
+
+    // Grade Mondrian dos trabalhos (12 colunas): [coluna, linha]
+    const GRID = [
+      { id: 'proj-01',    c: '1 / 9',   r: '1 / 4' },
+      { id: 'proj-town',  c: '9 / 13',  r: '1 / 3' },
+      { deco: 'blue',     c: '9 / 11',  r: '3 / 4' },
+      { deco: 'yellow circle', c: '11 / 13', r: '3 / 4' },
+      { id: 'proj-03',    c: '1 / 5',   r: '4 / 8' },
+      { id: 'proj-02',    c: '5 / 13',  r: '4 / 6' },
+      { id: 'proj-ecoar', c: '5 / 10',  r: '6 / 8' },
+      { deco: 'red',      c: '10 / 13', r: '6 / 7' },
+      { deco: 'yellow',   c: '10 / 13', r: '7 / 8' },
+      { id: 'proj-04',    c: '1 / 10',  r: '8 / 10' },
+      { deco: 'blue',     c: '10 / 13', r: '8 / 9' },
+      { deco: 'ink',      c: '10 / 13', r: '9 / 10' }
+    ]
+
+    const experienceData = [
+      { year: '2026', current: true,
+        pt: { role: 'Diagramador Jr.', org: 'Editora Online' },
+        en: { role: 'Junior Layout Designer', org: 'Editora Online' } },
+      { year: '2025',
+        pt: { role: 'Estagiário de Diagramação', org: 'Editora Online' },
+        en: { role: 'Layout Design Intern', org: 'Editora Online' } },
+      { year: '2023',
+        pt: { role: 'Social Media', org: 'Fábula Comunicação' },
+        en: { role: 'Social Media Designer', org: 'Fábula Comunicação' } }
+    ];
+
+    // =========================================================
+    // PROJETOS
+    // =========================================================
+    // Coleção: peças soltas. w/h = proporção da imagem. Para adicionar uma peça,
+    // salve como img/colecao-13.webp e acrescente uma linha aqui.
+    const collectionItems = [
+      { w: 850,  h: 850,  pt: ['WAVE E-SPORTS CLUB · CONCEITUAL', 'UNIFORME · CAMISA', 'Projeto conceitual de identidade para um time de e-sports.'],        en: ['WAVE E-SPORTS CLUB · CONCEPT', 'KIT · JERSEY', 'Concept identity project for an e-sports team.'] },
+      { w: 800,  h: 800,  pt: ['WAVE E-SPORTS CLUB · CONCEITUAL', 'UNIFORME · COSTAS', 'Projeto conceitual de identidade para um time de e-sports.'],        en: ['WAVE E-SPORTS CLUB · CONCEPT', 'KIT · BACK', 'Concept identity project for an e-sports team.'] },
+      { w: 1400, h: 1120, pt: ['WAVE E-SPORTS CLUB · CONCEITUAL', 'JAQUETA · FRENTE', 'Projeto conceitual de identidade para um time de e-sports.'],         en: ['WAVE E-SPORTS CLUB · CONCEPT', 'JACKET · FRONT', 'Concept identity project for an e-sports team.'] },
+      { w: 1400, h: 1120, pt: ['WAVE E-SPORTS CLUB · CONCEITUAL', 'JAQUETA · COSTAS', 'Projeto conceitual de identidade para um time de e-sports.'],         en: ['WAVE E-SPORTS CLUB · CONCEPT', 'JACKET · BACK', 'Concept identity project for an e-sports team.'] },
+      { w: 1080, h: 1359, pt: ['WAVE E-SPORTS CLUB · CONCEITUAL', 'SOCIAL MEDIA · RESULTADO', 'Projeto conceitual de identidade para um time de e-sports.'], en: ['WAVE E-SPORTS CLUB · CONCEPT', 'SOCIAL MEDIA · MATCH RESULT', 'Concept identity project for an e-sports team.'] },
+      { w: 1400, h: 1008, pt: ['BÍBLIA PARA CRIANÇAS', 'EDITORIAL · CAPA', 'Desenvolvido na Editora Online.'],       en: ['CHILDREN’S BIBLE', 'EDITORIAL · COVER', 'Designed at Editora Online.'] },
+      { w: 1400, h: 1008, pt: ['BÍBLIA PARA CRIANÇAS', 'CAPA, LOMBADA & CONTRACAPA', 'Desenvolvido na Editora Online.'], en: ['CHILDREN’S BIBLE', 'COVER, SPINE & BACK', 'Designed at Editora Online.'] },
+      { w: 1400, h: 980,  pt: ['HELLO KITTY — CUTE & COMFY', 'EDITORIAL · CAPA', 'Desenvolvido na Editora Online.'], en: ['HELLO KITTY — CUTE & COMFY', 'EDITORIAL · COVER', 'Designed at Editora Online.'] },
+      { w: 1400, h: 980,  pt: ['HELLO KITTY — CUTE & COMFY', 'CAPA, LOMBADA & CONTRACAPA', 'Desenvolvido na Editora Online.'], en: ['HELLO KITTY — CUTE & COMFY', 'COVER, SPINE & BACK', 'Designed at Editora Online.'] },
+      { w: 1400, h: 935,  pt: ['HELLO KITTY — 1500 ADESIVOS', 'PRANCHETA PARA COLORIR', 'Desenvolvido na Editora Online.'], en: ['HELLO KITTY — 1500 STICKERS', 'COLORING BOARD BOOK', 'Designed at Editora Online.'] },
+      { w: 1400, h: 987,  pt: ['HELLO KITTY — 1500 ADESIVOS', 'EDITORIAL · CAPA', 'Desenvolvido na Editora Online.'], en: ['HELLO KITTY — 1500 STICKERS', 'EDITORIAL · COVER', 'Designed at Editora Online.'] },
+      { w: 1400, h: 1129, pt: ['BURGREEN — GREENLY', 'EMBALAGEM'],                en: ['BURGREEN — GREENLY', 'PACKAGING'] }
+    ].map((it, i) => {
+      const src = `img/colecao-${String(i + 1).padStart(2, '0')}.webp`;
+      return {
+        num: `#${String(i + 1).padStart(2, '0')}`,
+        ratio: `${it.w} / ${it.h}`,
+        images: [src],
+        full: src,
+        pt: { title: it.pt[0], tag: it.pt[1], desc: it.pt[2] || '' },
+        en: { title: it.en[0], tag: it.en[1], desc: it.en[2] || '' }
+      };
+    });
+
+    const projectsData = [
+      {
+        id: 'proj-01',
+        team: ['Matheus Macedo Maximiliano', 'Fernando Guarnieri da Silva', 'Caio Azevedo Camilo', 'André Zandonade Fernandes', 'Guilherme Mariano Caetano'],
+        num: '01',
+        category: 'identity',
+        year: '2024',
+        images: ['img/mesp-capa.webp'],
+        // { strip: [...] } = lâminas empilhadas sem espaço, como no Behance (as formas continuam de uma para a outra)
+        gallery: [
+          // 01–18 = manual de marca (lâminas do Behance) · 19–21 = mockups (crachá, camisa, outdoor)
+          { strip: Array.from({ length: 21 }, (_, i) => `img/mesp-${String(i + 1).padStart(2, '0')}.webp`) }
+        ],
+        layoutType: 'standard',
+        featuredDefault: true,
+        pt: {
+          title: 'MESP',
+          tag: 'IDENTIDADE VISUAL · REBRANDING',
+          tagline: 'Moderna, educativa e voltada à conscientização.',
+          client: 'Projeto acadêmico — Museu da Energia de São Paulo',
+          mockupLabel: 'MESP — MUSEU DA ENERGIA DE SP',
+          summary: 'Projeto acadêmico de rebranding para o Museu da Energia de São Paulo, com identidade visual completa e manual de marca.',
+          challenge: 'Inaugurado em 2005 em um palacete histórico de 1894, o Museu da Energia de São Paulo discute o uso da energia, a sustentabilidade e o crescimento urbano-industrial da cidade. A proposta era modernizar sua identidade — com cores vibrantes, logotipo dinâmico e tipografia — e estendê-la para sinalização, materiais gráficos e presença digital, reforçando o museu como espaço educativo e cultural que promove a conscientização sobre energia sustentável.',
+          solution: 'A marca se apoia em três conceitos — movimento, sustentabilidade e energia — traduzidos em três ondas no azul marinho, no verde ecológico e no laranja energia. A tipografia combina a Glancyr em títulos e chamadas com a Ranade nos textos corridos. Um grafismo derivado da forma básica pode ser rotacionado (0°, 90°, −90° e 180°) e aplicado sobre ou dentro de imagens, e o manual define regras de posicionamento do logo, área de não interferência e aplicações em impressos e telas.',
+          deliverables: ['Logotipo', 'Paleta Cromática', 'Sistema Tipográfico', 'Grafismos', 'Manual de Marca', 'Aplicações & Mockups']
+        },
+        en: {
+          title: 'MESP',
+          tag: 'VISUAL IDENTITY · REBRANDING',
+          tagline: 'Modern, educational, and awareness-driven.',
+          client: 'Academic project — São Paulo Energy Museum',
+          mockupLabel: 'MESP — SÃO PAULO ENERGY MUSEUM',
+          summary: 'Academic rebranding project for the São Paulo Energy Museum, including a full visual identity and brand guidelines.',
+          challenge: 'Opened in 2005 inside a historic 1894 mansion, the São Paulo Energy Museum explores energy use, sustainability, and the city’s urban-industrial growth. The goal was to modernize its identity — with vibrant colors, a dynamic logo, and typography — and extend it to signage, print materials, and digital presence, positioning the museum as an educational and cultural space that raises awareness about sustainable energy.',
+          solution: 'The brand rests on three concepts — movement, sustainability, and energy — expressed as three waves in navy blue, ecological green, and energy orange. Typography pairs Glancyr for headlines and calls to action with Ranade for body text. A graphic element derived from the basic shape can be rotated (0°, 90°, −90°, and 180°) and placed over or inside images, and the guidelines define logo placement rules, clear space, and print and screen applications.',
+          deliverables: ['Logo', 'Color Palette', 'Typographic System', 'Graphic Elements', 'Brand Guidelines', 'Applications & Mockups']
+        }
+      },
+      {
+        id: 'proj-02',
+        team: ['Gabriela Moreira Reis'],
+        num: '02',
+        category: 'editorial',
+        year: '2023',
+        images: ['img/aura-brasil.webp'],
+        // Galeria: string = imagem comum (2 por linha); { src, full: true } = largura total, altura natural (sem corte)
+        gallery: [
+          'img/aura-02.webp',
+          'img/aura-03.webp',
+          { src: 'img/aura-identidade.webp', full: true }
+        ],
+        layoutType: 'standard',
+        featuredDefault: false,
+        pt: {
+          title: 'AURA BRASIL',
+          tag: 'EDITORIAL · PROJETO ACADÊMICO',
+          tagline: 'A revista que conecta-se com a riqueza cultural do Brasil.',
+          client: 'Projeto acadêmico',
+          mockupLabel: 'AURA BRASIL — REVISTA',
+          summary: 'Trabalho acadêmico editorial para a criação de uma revista fictícia dedicada à cultura brasileira contemporânea.',
+          challenge: 'Criar uma revista bimestral que abrange desde tradições folclóricas até expressões artísticas atuais, pensada para circular em centros culturais de todo o país. A edição 01 traz na capa a exposição “Segredos”, dos OSGEMEOS, na Pinacoteca de São Paulo.',
+          solution: 'O sistema visual parte das cinco regiões do Brasil: cada uma ganha uma cor e um recorte do mapa — azul para o Sudeste, verde para o Norte, vermelho para o Nordeste, laranja para o Centro-Oeste e amarelo para o Sul — que sinalizam as seções da revista. A tipografia combina a serifa expressiva Granderus no logotipo e títulos com a TT Chocolates no texto, acompanhadas de linhas orgânicas que atravessam as páginas.',
+          deliverables: ['Logotipo da Revista', 'Projeto Gráfico Editorial', 'Diagramação', 'Capa', 'Paleta & Sistema de Cores']
+        },
+        en: {
+          title: 'AURA BRASIL',
+          tag: 'EDITORIAL · ACADEMIC PROJECT',
+          tagline: 'The magazine that connects with Brazil’s cultural richness.',
+          client: 'Academic project',
+          mockupLabel: 'AURA BRASIL — MAGAZINE',
+          summary: 'Academic editorial project: creating a fictional magazine dedicated to contemporary Brazilian culture.',
+          challenge: 'Designing a bimonthly magazine spanning folk traditions to current artistic expression, meant to be found in cultural centers across the country. Issue 01 features OSGEMEOS’ “Segredos” exhibition at the Pinacoteca de São Paulo on its cover.',
+          solution: 'The visual system is built on Brazil’s five regions: each one gets a color and a map cut-out — blue for the Southeast, green for the North, red for the Northeast, orange for the Center-West, and yellow for the South — used to signal the magazine’s sections. Typography pairs the expressive Granderus serif for the masthead and headlines with TT Chocolates for body text, alongside organic lines that flow across the pages.',
+          deliverables: ['Magazine Masthead', 'Editorial Design', 'Page Layout', 'Cover', 'Color System']
+        }
+      },
+      {
+        id: 'proj-03',
+        num: '03',
+        category: 'editorial',
+        year: '2025',
+        images: ['img/metamorfose.webp'],
+        // Capa e contracapa lado a lado; depois sumário e abertura de capítulo
+        gallery: ['img/metamorfose-02.webp', 'img/metamorfose-03.webp', 'img/metamorfose-04.webp', 'img/metamorfose-05.webp'],
+        layoutType: 'standard',
+        featuredDefault: false,
+        pt: {
+          title: 'A METAMORFOSE',
+          tag: 'EDITORIAL · DESIGN DE LIVRO',
+          tagline: '',
+          client: 'Projeto pessoal',
+          mockupLabel: 'A METAMORFOSE — FRANZ KAFKA',
+          summary: 'Conceito pessoal de projeto editorial para o livro “A Metamorfose”, de Franz Kafka — capa, contracapa, lombada e miolo.',
+          challenge: 'Traduzir a ideia central do livro — a transformação de Gregor Samsa em inseto — em uma capa construída a partir da tipografia, e levar essa linguagem para o restante do livro.',
+          solution: 'A capa foi concebida a partir da etimologia da palavra: os caracteres do título se transformam à medida que se relacionam entre si, misturando estilos de letra sobre a silhueta de um besouro em vinho e amarelo, com textura gasta. A contracapa inverte as cores e acomoda a citação e a sinopse dentro do inseto. No miolo, a ilustração, o sumário e as aberturas de capítulo retomam as letras “recortadas” da capa.',
+          deliverables: ['Design de Capa', 'Contracapa & Lombada', 'Projeto Gráfico do Miolo', 'Tipografia']
+        },
+        en: {
+          title: 'THE METAMORPHOSIS',
+          tag: 'EDITORIAL · BOOK DESIGN',
+          tagline: '',
+          client: 'Personal project',
+          mockupLabel: 'THE METAMORPHOSIS — FRANZ KAFKA',
+          summary: 'Personal editorial concept for Franz Kafka’s “The Metamorphosis” — front cover, back cover, spine, and interior.',
+          challenge: 'Translating the book’s central idea — Gregor Samsa’s transformation into an insect — into a cover built from typography, and carrying that language through the rest of the book.',
+          solution: 'The cover stems from the word’s etymology: the title’s characters transform as they relate to one another, mixing letter styles over a beetle silhouette in burgundy and yellow with a worn texture. The back cover inverts the colors and places the quote and synopsis inside the insect. Inside, the illustration, table of contents, and chapter openers echo the cover’s “cut-out” lettering.',
+          deliverables: ['Cover Design', 'Back Cover & Spine', 'Interior Layout', 'Typography']
+        }
+      },
+      {
+        id: 'proj-ecoar',
+        num: '04',
+        category: 'interface',
+        year: '2023',
+        images: ['img/ecoar.webp'],
+        // Logo + paleta em largura total; depois as telas (perfil, avatar, prancha de comunicação)
+        gallery: [
+          { src: 'img/ecoar-02.webp', full: true },
+          'img/ecoar-03.webp', 'img/ecoar-04.webp', 'img/ecoar-05.webp'
+        ],
+        layoutType: 'standard',
+        featuredDefault: false,
+        pt: {
+          title: 'PROJETO ECOAR',
+          tag: 'INTERFACE · TCC',
+          tagline: 'Conectando pessoas.',
+          client: 'Trabalho de Conclusão de Curso (TCC)',
+          mockupLabel: 'ECOAR — INTERFACE COMUNICADORA',
+          summary: 'Trabalho de Conclusão de Curso: desenvolvimento de uma interface comunicadora para crianças com TEA.',
+          challenge: 'Desenvolver um ecossistema visual voltado ao suporte de pessoas no espectro autista: uma interface de comunicação que reduza ruídos visuais e respeite o processamento sensorial de quem a utiliza.',
+          solution: 'A identidade nasce de uma baleia formada por peças de quebra-cabeça — símbolo da conscientização sobre o autismo — com paleta suave de azuis, amarelo e rosa e tipografia arredondada. Na interface, princípios de design inclusivo guiam cada tela: seleção de perfil, criação de um avatar que ajuda a criança a se identificar com a própria fala e uma prancha de comunicação com palavras organizadas por categoria, atalhos de frase (“Quero”, “Eu”, “Tenho”) e botões grandes de sim e não, em layouts de alta legibilidade.',
+          deliverables: ['Logotipo & Mascote', 'Paleta de Cores', 'Interface (UI)', 'Sistema de Avatares', 'Layouts de Alta Legibilidade']
+        },
+        en: {
+          title: 'ECOAR PROJECT',
+          tag: 'INTERFACE · THESIS PROJECT',
+          tagline: 'Connecting people.',
+          client: 'Undergraduate Thesis Project',
+          mockupLabel: 'ECOAR — COMMUNICATION INTERFACE',
+          summary: 'Undergraduate thesis: design of a communication interface for children on the autism spectrum (ASD).',
+          challenge: 'Building a visual ecosystem to support people on the autism spectrum: a communication interface that reduces visual noise and respects users’ sensory processing.',
+          solution: 'The identity is built around a whale made of puzzle pieces — a symbol of autism awareness — with a soft palette of blues, yellow, and pink and rounded typography. In the interface, inclusive design principles guide every screen: profile selection, an avatar builder that helps children identify with their own speech, and a communication board with words grouped by category, phrase shortcuts (“I want”, “I”, “I have”), and large yes/no buttons, all in high-legibility layouts.',
+          deliverables: ['Logo & Mascot', 'Color Palette', 'Interface (UI)', 'Avatar System', 'High-Legibility Layouts']
+        }
+      },
+      {
+        id: 'proj-town',
+        num: '06',
+        category: 'identity',
+        year: '2026',
+        images: ['img/thetown.webp'],
+        imgPos: 'left center',
+        // slides em largura total; as duas de cores lado a lado
+        gallery: [{ src: 'img/thetown-02.webp', full: true }, { src: 'img/thetown-03.webp', full: true },
+                  'img/thetown-04.webp', 'img/thetown-05.webp',
+                  { src: 'img/thetown-06.webp', full: true }, { src: 'img/thetown-07.webp', full: true },
+                  { src: 'img/thetown-08.webp', full: true }, { src: 'img/thetown-09.webp', full: true }],
+        team: ['Guilherme Souza'],
+        layoutType: 'standard',
+        featuredDefault: false,
+        pt: {
+          title: 'THE TOWN',
+          tag: 'IDENTIDADE VISUAL · REBRANDING',
+          tagline: 'Onde os caminhos se encontram.',
+          client: 'Projeto acadêmico',
+          summary: 'Projeto acadêmico de rebranding do festival The Town, em São Paulo: logotipo, cores, posts e um novo palco principal.',
+          challenge: 'O The Town é a pulsação de São Paulo: um festival onde a música conecta, celebra a diversidade e transforma a cidade em ponto de encontro. O público é plural e jovem de espírito, e a nova identidade precisava traduzir esse encontro de tribos que circulam por palcos e ritmos diferentes.',
+          solution: 'A identidade nasce do fluxo da cidade e se inspira na malha de metrô e trem de São Paulo, traduzida de forma fluida. O logotipo, com tipografia baseada na Bauhaus 93, usa conexões que lembram a silhueta da cidade e o princípio de fechamento da Gestalt para manter a leitura. As cores vêm das linhas do metrô e cada uma representa um gênero musical, do funk ao pop. O sistema chega aos posts de line-up e ao palco principal, uma estrutura de 110 m de largura feita de linhas abstratas.',
+          deliverables: ['Logotipo', 'Cores por Gênero Musical', 'Posts para Redes Sociais', 'Projeto de Palco']
+        },
+        en: {
+          title: 'THE TOWN',
+          tag: 'VISUAL IDENTITY · REBRANDING',
+          tagline: 'Where paths meet.',
+          client: 'Academic project',
+          summary: 'Academic rebranding of The Town music festival in São Paulo: logo, colors, social posts, and a new main stage.',
+          challenge: 'The Town is São Paulo’s pulse: a festival where music connects people, celebrates diversity, and turns the city into a meeting point. Its audience is diverse and young at heart, and the new identity had to express this meeting of crowds moving between stages and genres.',
+          solution: 'The identity grows out of the city’s flow, drawing on São Paulo’s subway and train map in a fluid way. The logo, with lettering based on Bauhaus 93, uses connections that echo the city skyline and the Gestalt principle of closure to stay legible. The colors come from the subway lines, and each one stands for a music genre, from funk to pop. The system extends to line-up posts and to the main stage, a 110 m wide structure made of abstract lines.',
+          deliverables: ['Logo', 'Genre Color System', 'Social Media Posts', 'Stage Design']
+        }
+      },
+      {
+        id: 'proj-04',
+        num: '05',
+        category: 'social',
+        year: '2023—26',
+        images: [collectionItems[0].images[0]],
+        layoutType: 'updates',
+        featuredDefault: false,
+        pt: {
+          title: 'COLEÇÃO · PROJETOS PESSOAIS',
+          tag: 'ARQUIVO VIVO / SOCIAL / ESTUDOS',
+          mockupLabel: 'COLEÇÃO — ARQUIVO',
+          summary: 'Projetos diversos: identidade conceitual para e-sports, livros infantis desenvolvidos na Editora Online, social media e embalagem.'
+        },
+        en: {
+          title: 'COLLECTION · PERSONAL WORK',
+          tag: 'LIVING ARCHIVE / SOCIAL / STUDIES',
+          mockupLabel: 'COLLECTION — ARCHIVE',
+          summary: 'Assorted projects: concept e-sports identity, children’s books designed at Editora Online, social media, and packaging.'
+        },
+        updatesItems: collectionItems
+      }
+    ];
+
+
+
+    // =========================================================
+    // HOME
+    // =========================================================
+    function renderTicker() {
+      const shapes = ['sq', 'ci', 'tr'];
+      const words = t('ticker');
+      const g = (h) => `<div class="ticker-group"${h ? ' aria-hidden="true"' : ''}>${words.map((w, i) => `<span>${w}</span><i class="${shapes[i % 3]}"></i>`).join('')}</div>`;
+      document.getElementById('ticker').innerHTML = g(false) + g(true) + g(true) + g(true);
+    }
+
+    function renderWorks() {
+      document.getElementById('work-count').textContent = `${pad(ORDER.length)} ${t('projects')}`;
+      let k = 0;
+      document.getElementById('works').innerHTML = GRID.map(cell => {
+        const pos = `grid-column:${cell.c};grid-row:${cell.r};--d:${(k++) * 90}ms`;
+        if (cell.deco) return `<div class="deco ${cell.deco} reveal" style="${pos}" aria-hidden="true"></div>`;
+        const p = projectsData.find(x => x.id === cell.id);
+        if (!p) return '';
+        const D = DISPLAY[p.id], [name, kind] = D[currentLang];
+        const n = ORDER.indexOf(p.id) + 1;
+        return `
+          <button class="work reveal" style="${pos};--hc:${D.color};--hf:${D.fg}" onclick="openCase('${p.id}')" aria-label="${esc(name)}, ${esc(kind)}, ${p.year}">
+            <img ${imgAttrs(p.images)} alt="" loading="lazy" style="object-position:${p.imgPos || 'center'}" />
+            <span class="tag"><span class="num">${pad(n)}</span><b>${esc(name)}</b><small>${esc(kind)} · ${p.year}${p.team && p.team.length ? ' · ' + t('group') : ''}</small></span>
+          </button>`;
+      }).join('');
+    }
+
+    function renderExperience() {
+      document.getElementById('exp-list').innerHTML = experienceData.map(e => {
+        const d = e[currentLang];
+        return `<div class="trow"><span class="y">${e.year}</span><span>${esc(d.role)} <span class="muted">· ${esc(d.org)}</span></span>${e.current ? `<span class="now">${t('now')}</span>` : '<span></span>'}</div>`;
+      }).join('');
+    }
+
+    function applyStatic() {
+      document.querySelectorAll('[data-i18n]').forEach(el => { const v = i18n[currentLang][el.dataset.i18n]; if (typeof v === 'string') el.textContent = v; });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = i18n[currentLang][el.dataset.i18nHtml]; if (typeof v === 'string') el.innerHTML = v; });
+    }
+
+    function renderAll() {
+      applyStatic(); renderTicker(); renderWorks(); renderExperience(); renderHeroLabels(); observe();
+      if (activeId) renderCase(activeId);
+    }
+
+    function setLanguage(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      document.getElementById('btn-pt').setAttribute('aria-pressed', lang === 'pt');
+      document.getElementById('btn-en').setAttribute('aria-pressed', lang === 'en');
+      try { localStorage.setItem('vd-lang', lang); } catch (e) {}
+      renderAll();
+    }
+
+    // =========================================================
+    // COMPOSIÇÃO DO TOPO: a grade se reequilibra e troca o projeto em destaque
+    // =========================================================
+    const LAYOUTS = [
+      { c: '1.55fr 1fr .62fr', r: '1.15fr .85fr .7fr', rot: 0 },
+      { c: '1.2fr 1.1fr .9fr', r: '1fr 1.1fr .55fr',   rot: 90 },
+      { c: '1.7fr .8fr .75fr', r: '1.3fr .6fr .8fr',   rot: 180 },
+      { c: '1.35fr 1.2fr .5fr', r: '.95fr 1fr .8fr',   rot: 270 }
+    ];
+    let heroIndex = 0, heroTimer = null, heroPaused = false, front = 'a';
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function heroImage(id) { const p = projectsData.find(x => x.id === id); return p ? p.images : []; }
+    function renderHeroLabels() {
+      const id = HERO[heroIndex];
+      document.getElementById('comp-num').textContent = pad(ORDER.indexOf(id) + 1);
+      document.getElementById('comp-name').textContent = DISPLAY[id][currentLang][0];
+      document.getElementById('comp-img').setAttribute('aria-label', DISPLAY[id][currentLang].join(', '));
+      document.getElementById('comp-dots').innerHTML = HERO.map((h, i) =>
+        `<button aria-label="${esc(DISPLAY[h][currentLang][0])}" aria-current="${i === heroIndex}" onclick="showHero(${i}, true)"></button>`).join('');
+    }
+    function showHero(i, manual) {
+      heroIndex = (i + HERO.length) % HERO.length;
+      const L = LAYOUTS[heroIndex % LAYOUTS.length];
+      const comp = document.getElementById('comp');
+      comp.style.setProperty('--c', L.c); comp.style.setProperty('--r', L.r);
+      comp.querySelector('.c-yel').style.setProperty('--rot', L.rot + 'deg');
+      const a = document.getElementById('comp-a'), b = document.getElementById('comp-b');
+      const [show, hide] = front === 'a' ? [b, a] : [a, b];
+      const srcs = heroImage(HERO[heroIndex]);
+      show.onload = () => { show.classList.remove('out'); hide.classList.add('out'); };
+      show.dataset.fallbacks = srcs.slice(1).join('|'); show.onerror = () => imgFallback(show);
+      show.style.objectPosition = (projectsData.find(x => x.id === HERO[heroIndex]) || {}).imgPos || 'center';
+      show.src = srcs[0];
+      front = front === 'a' ? 'b' : 'a';
+      renderHeroLabels();
+      if (manual) scheduleHero();
+    }
+    function scheduleHero() {
+      clearTimeout(heroTimer);
+      if (!heroPaused) heroTimer = setTimeout(() => { showHero(heroIndex + 1); scheduleHero(); }, 5000);
+    }
+    function initHero() {
+      const a = document.getElementById('comp-a');
+      const s = heroImage(HERO[0]); a.dataset.fallbacks = s.slice(1).join('|'); a.onerror = () => imgFallback(a); a.src = s[0];
+      const zone = document.getElementById('comp').parentElement;
+      const pause = (v) => { heroPaused = v; v ? clearTimeout(heroTimer) : scheduleHero(); };
+      zone.addEventListener('mouseenter', () => pause(true));
+      zone.addEventListener('mouseleave', () => pause(false));
+      document.addEventListener('visibilitychange', () => pause(document.hidden));
+      scheduleHero();
+    }
+
+    // =========================================================
+    // PÁGINA DO PROJETO
+    // =========================================================
+    function galleryHTML(project, title) {
+      const items = (project.gallery || []).map(g => typeof g === 'string' ? { src: g } : g);
+      const regular = items.filter(g => !g.full && !g.strip).length;
+      let spanned = false;
+      return items.map((g, i) => {
+        if (g.strip) return `<div class="strip">${g.strip.map((src, j) => `<img ${imgAttrs([src])} alt="${esc(title)}, lâmina ${j + 1}" loading="lazy" />`).join('')}</div>`;
+        let span = '';
+        if (g.full) span = 'span2';
+        else if (regular % 2 === 1 && !spanned) { span = 'span2'; spanned = true; }
+        return `<figure class="${span} g-item"><img ${imgAttrs([g.src])} data-hide=".g-item" alt="${esc(title)}, imagem ${i + 1}" loading="lazy" /></figure>`;
+      }).join('');
+    }
+
+    function renderCase(id) {
+      const p = projectsData.find(x => x.id === id);
+      if (!p) return;
+      const d = p[currentLang], D = DISPLAY[id];
+      const [name, kind] = D[currentLang];
+      const idx = ORDER.indexOf(id);
+      const nextId = ORDER[(idx + 1) % ORDER.length], N = DISPLAY[nextId];
+      document.getElementById('case-count').textContent = `${pad(idx + 1)} / ${pad(ORDER.length)}`;
+      const head = `
+        <header class="case-head wrap">
+          <span class="caps">${pad(idx + 1)} — ${esc(kind)}</span>
+          <h1 class="display" id="case-title">${esc(name)}</h1>
+          <div class="stripe" style="--hc:${D.color}"></div>
+          ${d.tagline ? `<p class="case-tagline">${esc(d.tagline)}</p>` : ''}
+          <p class="case-summary">${esc(d.summary)}</p>
+          ${p.layoutType === 'updates' ? '' : `
+          <dl class="meta">
+            <div><dt class="caps">${t('m_year')}</dt><dd>${p.year}</dd></div>
+            <div><dt class="caps">${t('m_client')}</dt><dd>${esc(d.client || '—')}</dd></div>
+            <div><dt class="caps">${t('m_area')}</dt><dd>${esc(kind)}</dd></div>
+            <div><dt class="caps">${t('m_deliv')}</dt><dd><ul>${d.deliverables.map(x => `<li>${esc(x)}</li>`).join('')}</ul></dd></div>
+            ${p.team && p.team.length ? `<div class="team"><dt class="caps">${t('m_team')}</dt>${p.team.map(n => `<dd>${esc(n)}</dd>`).join('')}</div>` : ''}
+          </dl>`}
+        </header>`;
+      let body;
+      if (p.layoutType === 'updates') {
+        body = `<div class="wrap" style="margin-top:clamp(40px,7vh,72px)"><div class="collection">${(p.updatesItems || []).map(it => {
+          const c = it[currentLang];
+          const tag = c.tag.charAt(0) + c.tag.slice(1).toLowerCase();
+          return `<figure class="c-item">
+            <a href="${it.full}" target="_blank" rel="noopener"><img ${imgAttrs(it.images)} data-hide=".c-item" alt="${esc(titleCase(c.title))}" loading="lazy" style="aspect-ratio:${it.ratio}" /></a>
+            <figcaption><span class="n">${it.num.replace('#', '')}</span><span class="t">${esc(titleCase(c.title))}</span><span class="d">${esc(tag)}${c.desc ? '. ' + esc(c.desc) : ''}</span></figcaption>
+          </figure>`;
+        }).join('')}</div></div>`;
+      } else {
+        body = `
+          <div class="wrap">
+            <figure class="case-hero"><img ${imgAttrs(p.images)} alt="${esc(name)}" /></figure>
+            <div class="case-text">
+              <div><h2 class="caps">${t('challenge')}</h2><p>${esc(d.challenge)}</p></div>
+              <div><h2 class="caps">${t('solution')}</h2><p>${esc(d.solution)}</p></div>
+            </div>
+            <div class="gallery">${galleryHTML(p, name)}</div>
+          </div>`;
+      }
+      document.getElementById('case-body').innerHTML = head + body + `
+        <button class="case-next" style="--hc:${N.color};--hf:${N.fg}" onclick="openCase('${nextId}', true)">
+          <span><span class="caps">${t('next')}</span><span class="display">${esc(N[currentLang][0])}</span></span>
+          <span class="arrow" aria-hidden="true">→</span>
+        </button>`;
+    }
+
+    function openCase(id, fromCase) {
+      const box = document.getElementById('case');
+      if (!fromCase) lastFocus = document.activeElement;
+      activeId = id;
+      renderCase(id);
+      box.classList.remove('open'); void box.offsetWidth; box.classList.add('open');
+      box.setAttribute('aria-hidden', 'false');
+      box.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      const slug = DISPLAY[id].slug;
+      if (location.hash !== '#' + slug) history.pushState({ case: id }, '', '#' + slug);
+      document.getElementById('case-close').focus({ preventScroll: true });
+    }
+    function closeCase(fromHistory) {
+      if (!activeId) return;
+      const box = document.getElementById('case');
+      activeId = null;
+      box.classList.remove('open'); box.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (!fromHistory && location.hash) history.pushState(null, '', location.pathname + location.search);
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    }
+    function caseFromHash() {
+      const slug = location.hash.slice(1);
+      const id = Object.keys(DISPLAY).find(k => DISPLAY[k].slug === slug);
+      if (id) openCase(id, true); else closeCase(true);
+    }
+    addEventListener('popstate', caseFromHash);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCase(); });
+
+    // =========================================================
+    // MOVIMENTO
+    // =========================================================
+    const io = 'IntersectionObserver' in window
+      ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -30px 0px' })
+      : null;
+    function observe() { document.querySelectorAll('.reveal:not(.in), .rise:not(.in)').forEach(el => io ? io.observe(el) : el.classList.add('in')); }
+
+    // letreiro acelera com a rolagem e inverte quando a página sobe
+    (() => {
+      const track = document.getElementById('ticker');
+      let lastY = scrollY, boost = 0, dir = 1, running = false;
+      const frame = () => {
+        boost *= 0.9;
+        const a = track.getAnimations && track.getAnimations()[0];
+        if (a) a.playbackRate = dir * (1 + boost);
+        if (boost > 0.03) requestAnimationFrame(frame); else { running = false; if (a) a.playbackRate = dir; }
+      };
+      addEventListener('scroll', () => {
+        if (reduceMotion) return;
+        const dy = scrollY - lastY; lastY = scrollY;
+        if (Math.abs(dy) > 2) dir = dy > 0 ? 1 : -1;
+        boost = Math.min(boost + Math.abs(dy) / 60, 4);
+        if (!running) { running = true; requestAnimationFrame(frame); }
+      }, { passive: true });
+    })();
+
+    // =========================================================
+    // CONTATO
+    // =========================================================
+    function toast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg; el.classList.add('show');
+      clearTimeout(toast._t); toast._t = setTimeout(() => el.classList.remove('show'), 2200);
+    }
+    async function copyEmail() {
+      try { await navigator.clipboard.writeText('dias00448@gmail.com'); toast(t('copied')); }
+      catch (e) { toast(t('copy_fail')); }
+    }
+
+    // =========================================================
+    // INÍCIO
+    // =========================================================
+    document.getElementById('year').textContent = new Date().getFullYear();
+    try { if (localStorage.getItem('vd-lang') === 'en') currentLang = 'en'; } catch (e) {}
+    document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+    document.getElementById('btn-pt').setAttribute('aria-pressed', currentLang === 'pt');
+    document.getElementById('btn-en').setAttribute('aria-pressed', currentLang === 'en');
+    renderAll();
+    initHero();
+    if (location.hash) caseFromHash();
+  </script>
+</body>
+</html>
